@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!--
+Template Name: Carinary
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="">
+<head>
+<title>Installing Ambari</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../index.html">Hadoop Administrator</a></h1>
+    </div>
+    <div id="quickinfo" class="fl_right">
+      <ul class="nospace inline">
+        <li><strong>Dewendra Singh:</strong><br>
+          +91-9742792731</li>
+<!--        <li><strong>Condimentum:</strong><br> 
+          +00 (123) 456 7890</li> -->
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2">
+  <nav id="mainav" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li class="active"><a href="../index.html">Home</a></li>
+      <li><a class="drop" href="#">YARN</a>
+        <ul>
+          <!--<li><a href="pages/gallery.html">Gallery</a></li>
+          <li><a href="pages/full-width.html">Full Width</a></li>
+          <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+          <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+          <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
+		  <li><a href="yarn-site.html"> yarn-site </a></li>
+        </ul>
+      </li>
+      <!--<li><a class="drop" href="#">Dropdown</a>
+        <ul>
+          <li><a href="#">Level 2</a></li>
+          <li><a class="drop" href="#">Level 2 + Drop</a>
+            <ul>
+              <li><a href="#">Level 3</a></li>
+              <li><a href="#">Level 3</a></li>
+              <li><a href="#">Level 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Level 2</a></li>
+        </ul>
+      </li>-->
+      <li><a class="drop" href="#">Getting Started</a>
+        <ul>
+          <li><a href="Setup_Hadoop.html">Creating VM's</a></li>
+          <!--<li><a href="pages/full-width.html">Full Width</a></li>
+          <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+          <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+          <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
+		  <li><a href="hadoop_installation.html"> Installing Ambari </a></li>
+        </ul>
+      </li>
+      <!--<li><a href="#">Link Text</a></li>
+      <li><a href="#">Link Text</a></li>
+      <li><a href="#">Long Link Text</a></li>-->
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- <div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <section id="breadcrumb" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<h6 class="heading">Full Width</h6>
+    <!-- ################################################################################################ -->
+    <!--<ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Lorem</a></li>
+      <li><a href="#">Ipsum</a></li>
+      <li><a href="#">Dolor</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  <!--</section>
+</div> -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+     <h1><b>Preparing the system for Ambari setup.</b></h1>
+      <!--<img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
+    <p>In this article, I will configure the host systems and install HDP using Ambari.</BR>
+	     First, we will install Ambari and then deploy a datanode using Ambari. </p>
+	<p><h1>Configure network settings </h1>
+		Once we fire up the VM, the first thing we need to perform is to configure the host adapter settings.</BR>
+		For this, login into the VM and then head over to <i>/etc/sysconfig/network-scripts/ </i> </BR>
+	  [root@localhost ~]# ls -lrth /etc/sysconfig/network-scripts/ifcfg-enp0s* </BR>
+		<i>-rw-r--r--. 1 root root 373 Dec 17 09:01 /etc/sysconfig/network-scripts/ifcfg-enp0s8</BR>
+		-rw-r--r--. 1 root root 329 Dec 17 09:02 /etc/sysconfig/network-scripts/ifcfg-enp0s3</BR></i>
+	<p> Change both of the files as shown below. The changed parameters are shown in <font color="green"><b>green</b></font></BR>
+		[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-enp0s3 </BR>
+		<i>TYPE=Ethernet</BR>
+		BOOTPROTO=dhcp</BR>
+		DEFROUTE=yes</BR>
+		PEERDNS=yes</BR>
+		PEERROUTES=yes</BR>
+		IPV4_FAILURE_FATAL=<b><font color="green">yes</font></b></BR>
+		IPV6INIT=<b><font color="green">no</font></b></BR>
+		IPV6_AUTOCONF=<b><font color="green">no</font></b></BR>
+		IPV6_DEFROUTE=<b><font color="green">no</font></b></BR>
+		IPV6_PEERDNS=<b><font color="green">no</font></b></BR>
+		IPV6_PEERROUTES=<b><font color="green">no</font></b></BR>
+		IPV6_FAILURE_FATAL=<b><font color="green">no</font></b></BR>
+		IPV6_ADDR_GEN_MODE=stable-privacy</BR>
+		NAME=enp0s3</BR>
+		UUID=181bf6f2-b038-43a3-a884-159e51bc7ae2</BR>
+		DEVICE=enp0s3</BR>
+		ONBOOT=<b><font color="green">yes</font></b></BR>
+		<b><font color="green">NM_CONTROLLED=yes</font></b></BR></i>
+		</BR>
+		[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-enp0s8</BR>
+		<i>TYPE=Ethernet</BR>
+		BOOTPROTO=<b><font color="green">none</font></b></BR>
+		DEFROUTE=yes</BR>
+		PEERDNS=yes</BR>
+		PEERROUTES=yes</BR>
+		IPV4_FAILURE_FATAL=<b><font color="green">yes</font></b></BR>
+		IPV6INIT=<b><font color="green">no</font></b></BR>
+		IPV6_AUTOCONF=<b><font color="green">no</font></b></BR>
+		IPV6_DEFROUTE=<b><font color="green">no</font></b></BR>
+		IPV6_PEERDNS=<b><font color="green">no</font></b></BR>
+		IPV6_PEERROUTES=<b><font color="green">no</font></b></BR>
+		IPV6_FAILURE_FATAL=<b><font color="green">no</font></b></BR>
+		IPV6_ADDR_GEN_MODE=stable-privacy</BR>
+		NAME=enp0s8</BR>
+		UUID=83ca4a9d-1b6c-40b0-ba9c-bb0ea7ba43e3</BR>
+		DEVICE=enp0s8</BR>
+		ONBOOT=<b><font color="green">yes</font></b></BR>
+		<b><font color="green">NM_CONTROLLED=no</font></b></BR>
+		<b><font color="green">IPADDR=192.168.141.71</font></b></BR>
+		<b><font color="green">NETMASK=255.255.255.0</font></b></BR></i>
+	 </p>
+	<p> Next step is to disable the firewall of the system and then restart the network service in order to bring up the network adapter with the assigned ip address.<BR>
+		</BR>
+
+		[root@localhost ~]# systemctl stop firewalld</BR>
+		[root@localhost ~]# systemctl status firewalld</BR>
+		<i>● firewalld.service - firewalld - dynamic firewall daemon</BR>
+		Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)</BR>
+		Active: inactive (dead) since Sun 2017-12-17 10:27:46 EST; 6s ago</BR>
+		Docs: man:firewalld(1)</BR>
+		Process: 674 ExecStart=/usr/sbin/firewalld --nofork --nopid $FIREWALLD_ARGS (code=exited, status=0/SUCCESS)</BR>
+		Main PID: 674 (code=exited, status=0/SUCCESS)</BR>
+		</BR>
+		Dec 17 03:16:41 localhost.localdomain systemd[1]: Starting firewalld - dynamic firewall daemon...</BR>
+		Dec 17 03:16:44 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.</BR>
+		Dec 17 09:02:23 localhost.localdomain firewalld[674]: ERROR: UNKNOWN_INTERFACE: 'enp0s8' is not in any zone</BR>
+		Dec 17 10:27:46 localhost.localdomain systemd[1]: Stopping firewalld - dynamic firewall daemon...</BR>
+		Dec 17 10:27:46 localhost.localdomain systemd[1]: Stopped firewalld - dynamic firewall daemon.</BR></i>
+		</BR>
+		[root@localhost ~]# systemctl restart network</BR>
+	</p>
+	<p>  Install ntp service and start it.</BR>
+		[root@localhost ~]# yum install ntp</BR>
+		<i>Loaded plugins: fastestmirror, langpacks</BR>
+		Loading mirror speeds from cached hostfile</BR>
+		* base: ftp.iitm.ac.in</BR>
+		.....</BR>
+		.....</BR></i>
+		[root@localhost ~]# systemctl start ntpd</BR>
+		[root@localhost ~]# systemctl status ntpd</BR>
+		<i>● ntpd.service - Network Time Service</BR>
+		   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)</BR>
+		   Active: active (running) since Sun 2017-12-17 12:17:47 EST; 8s ago</BR>
+		  Process: 7920 ExecStart=/usr/sbin/ntpd -u ntp:ntp $OPTIONS (code=exited, status=0/SUCCESS)</BR>
+		 Main PID: 7921 (ntpd)</BR>
+		   CGroup: /system.slice/ntpd.service</BR>
+				   └─7921 /usr/sbin/ntpd -u ntp:ntp -g</BR>
+		</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listen normally on 3 enp0s3 10.0.2.15 UDP 123</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listen normally on 4 enp0s8 192.168.141.71 UDP 123</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listen normally on 5 lo ::1 UDP 123</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listen normally on 6 enp0s3 fe80::a00:27ff:fed0:f07f UDP 123</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listen normally on 7 enp0s8 fe80::a00:27ff:fe1f:7276 UDP 123</BR>
+		Dec 17 12:17:47 localhost.localdomain ntpd[7921]: Listening on routing socket on fd #24 for interface updates</BR>
+		Dec 17 12:17:48 localhost.localdomain ntpd[7921]: 0.0.0.0 c016 06 restart</BR>
+		Dec 17 12:17:48 localhost.localdomain ntpd[7921]: 0.0.0.0 c012 02 freq_set kernel 0.000 PPM</BR>
+		Dec 17 12:17:48 localhost.localdomain ntpd[7921]: 0.0.0.0 c011 01 freq_not_set</BR>
+		Dec 17 12:17:54 localhost.localdomain ntpd[7921]: 0.0.0.0 c614 04 freq_mode</BR></i>
+	</p>
+	<p><h1>System file configuration </h1>Add the ip address and change the host name in <i>/etc/hosts</i> files</BR>
+		[root@localhost ~]# cat /etc/hosts</BR>
+		<i>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</BR>
+		::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</BR>
+		192.168.141.71   namenode</BR></i>
+	<p>Edit the network configuration file on every host and set the desired network configuration for each host. </BR>
+		[root@namenode ~]# cat /etc/sysconfig/network</BR>
+		<i>NETWORKING=yes</BR>
+		HOSTNAME=namenode</BR></i>
+	</p>
+	<p>Disable SELinux and PackageKit and check the umask Value.</BR></BR>
+	Open <i>/etc/yum/pluginconf.d/refresh-packagekit.conf</i> with a text editor and make the following change to disable installation host of CentOS.</BR>
+		<i>enabled=0</i>
+	</p>
+	<p>	Edit the <i>/etc/selinux/config</i>and change SELINUX=enforcing to SELINUX=disabled.</BR>
+		[root@namenode ~]# cat /etc/selinux/config</BR>
+		<i># This file controls the state of SELinux on the system.</BR>
+		# SELINUX= can take one of these three values:</BR>
+		#     enforcing - SELinux security policy is enforced.</BR>
+		#     permissive - SELinux prints warnings instead of enforcing.</BR>
+		#     disabled - No SELinux policy is loaded.</BR>
+		SELINUX=disabled</BR>
+		# SELINUXTYPE= can take one of three two values:</BR>
+		#     targeted - Targeted processes are protected,</BR>
+		#     minimum - Modification of targeted policy. Only selected processes are protected.</BR>
+		#     mls - Multi Level Security protection.</BR>
+		SELINUXTYPE=targeted</BR></i>
+	</p>
+	<p>We need to verify that the umask value is set to 0022 as Ambari and HDP support umask values of 0022.</BR>
+		[root@namenode ~]# umask</BR>
+		<i>0022</BR></i>
+		If the umask is not set to this value then the same can be changed in <i>/etc/profile</i>.</BR>
+ 	</p>
+	<p><h1>Enable passwordless login </h1>The next thing we need to do is to enable passwordless login for the root user on the localhost.</BR>
+		[root@namenode ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa</BR>
+		<i>Generating public/private dsa key pair.</BR>
+		Created directory '/root/.ssh'.</BR>
+		Your identification has been saved in /root/.ssh/id_dsa.</BR>
+		Your public key has been saved in /root/.ssh/id_dsa.pub.</BR>
+		The key fingerprint is:</BR>
+		b4:dd:9b:46:26:37:06:1a:08:17:ae:52:e1:f6:61:8d root@namenode</BR>
+		The key's randomart image is:</BR>
+		+--[ DSA 1024]----+</BR>
+		|    o o.         |</BR>
+		|   . = +         |</BR>
+		|    + E + .      |</BR>
+		|   o + o = o     |</BR>
+		|  . . . S o B    |</BR>
+		|   .       * +   |</BR>
+		|            +    |</BR>
+		|           .     |</BR>
+		|                 |</BR>
+		+-----------------+</BR></i>
+		[root@namenode ~]# cat ~/.ssh/id_dsa.pub > ~/.ssh/authorized_keys</BR>
+		[root@namenode ~]# chmod 600 ~/.ssh/authorized_keys</BR>
+		[root@namenode ~]# ssh `hostname`</BR>
+		<i>The authenticity of host 'namenode (192.168.141.71)' can't be established.</BR>
+		ECDSA key fingerprint is 76:88:8b:76:af:d3:41:88:d0:89:aa:62:52:23:cb:98.</BR>
+		Are you sure you want to continue connecting (yes/no)? </i>yes</BR>
+		<i>Warning: Permanently added 'namenode,192.168.141.71' (ECDSA) to the list of known hosts.</BR>
+		Last login: Mon Dec 18 10:05:31 2017 from 192.168.141.1</BR></i>
+		[root@namenode ~]# exit</BR>
+		<i>logout</BR>
+		Connection to namenode closed.</BR></i>
+	</p>
+	<p> <h1>Install JAVA </h1>Install the latest version of java using the following commands:</BR>
+		[root@namenode ~]# yum install java</BR>
+		[root@namenode ~]# java -version</BR>
+		<i>openjdk version "1.8.0_151"</BR>
+		OpenJDK Runtime Environment (build 1.8.0_151-b12)</BR>
+		OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)</i></BR>
+
+	</p>
+	<p><h1>Install Ambari </h1>Next, to install ambari, download the latest <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-administration/content/download_the_ambari_repo.html" target="_blank">ambari repo</a> and keep it in the <i>/etc/yum.repos.d/</i> path</BR>
+		[root@namenode ~]# wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.0.0/ambari.repo -O /etc/yum.repos.d/ambari.repo </BR>
+		[root@namenode ~]# yum repolist</BR>
+		<i>Loaded plugins: fastestmirror, langpacks</BR>
+		ambari-2.6.0.0                                                                                                                     | 2.9 kB  00:00:00</BR>
+		base                                                                                                                               | 3.6 kB  00:00:00</BR>
+		extras                                                                                                                             | 3.4 kB  00:00:00</BR>
+		updates                                                                                                                            | 3.4 kB  00:00:00</BR>
+		ambari-2.6.0.0/primary_db                                                                                                          | 8.6 kB  00:00:00</BR>
+		Loading mirror speeds from cached hostfile</BR>
+		 * base: ftp.iitm.ac.in</BR>
+		 * extras: ftp.iitm.ac.in</BR>
+		 * updates: ftp.iitm.ac.in</BR>
+		repo id                                                           repo name                                                                         status</BR>
+		ambari-2.6.0.0                                                    ambari Version - ambari-2.6.0.0                                                      12</BR>
+		base/7/x86_64                                                     CentOS-7 - Base                                                                   9,591</BR>
+		extras/7/x86_64                                                   CentOS-7 - Extras                                                                   327</BR>
+		updates/7/x86_64                                                  CentOS-7 - Updates                                                                1,540</BR>
+		repolist: 11,470</BR></i>
+	</p>
+	<p>Next, Install ambari server and ambari agent</BR>
+		[root@namenode ~]# yum install ambari-server</BR>
+		<i>Loaded plugins: fastestmirror, langpacks</BR>
+		Loading mirror speeds from cached hostfile</BR>
+		 * base: ftp.iitm.ac.in</BR>
+		 * extras: ftp.iitm.ac.in</BR>
+		 * updates: ftp.iitm.ac.in</BR>
+		Resolving Dependencies</BR>
+		--> Running transaction check</BR>
+		---> Package ambari-server.x86_64 0:2.6.0.0-267 will be installed</BR>
+		--> Finished Dependency Resolution</BR>
+		</BR>
+		Dependencies Resolved</BR>
+		=============================================================================</BR>
+		 Package                               Arch                           Version                                Repository                              Size</BR>
+		=============================================================================</BR>
+		Installing:</BR>
+		 ambari-server                         x86_64                         2.6.0.0-267                            ambari-2.6.0.0                         712 M</BR>
+
+		Transaction Summary</BR>
+		=============================================================================</BR>
+		Install  1 Package</BR>
+
+		Total download size: 712 M</BR>
+		Installed size: 776 M</BR>
+		Is this ok [y/d/N]: y</BR>
+		Downloading packages:</BR>
+		warning: /var/cache/yum/x86_64/7/ambari-2.6.0.0/packages/ambari-server-2.6.0.0-267.x86_64.rpm: Header V4 RSA/SHA1 Signature, key ID 07513cad: NOKEY00 ETA</BR>
+		Public key for ambari-server-2.6.0.0-267.x86_64.rpm is not installed</BR>
+		ambari-server-2.6.0.0-267.x86_64.rpm                                     </BR>                                                          | 712 MB  00:19:03
+		Retrieving key from http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.0.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</BR>
+		Importing GPG key 0x07513CAD:</BR>
+		 Userid     : "Jenkins (HDP Builds) <jenkin@hortonworks.com>"</BR>
+		 Fingerprint: df52 ed4f 7a3a 5882 c099 4c66 b973 3a7a 0751 3cad</BR>
+		 From       : http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.0.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</BR>
+		Is this ok [y/N]: y</BR>
+		Running transaction check</BR>
+		Running transaction test</BR>
+		Transaction test succeeded</BR>
+		Running transaction</BR>
+		  Installing : ambari-server-2.6.0.0-267.x86_64                                                                                                       1/1</BR>
+		  Verifying  : ambari-server-2.6.0.0-267.x86_64                                                                                                       1/1</BR>
+
+		Installed:</BR>
+		  ambari-server.x86_64 0:2.6.0.0-267</BR>
+
+		Complete!</BR></i>
+		[root@namenode ~]# yum install ambari-agent</BR>
+		<i>Loaded plugins: fastestmirror, langpacks</BR>
+		Loading mirror speeds from cached hostfile</BR>
+		 * base: ftp.iitm.ac.in</BR>
+		 * extras: ftp.iitm.ac.in</BR>
+		 * updates: ftp.iitm.ac.in</BR>
+		Resolving Dependencies</BR>
+		--> Running transaction check</BR>
+		---> Package ambari-agent.x86_64 0:2.6.0.0-267 will be installed</BR>
+		--> Finished Dependency Resolution</BR>
+
+		Dependencies Resolved</BR>
+
+		===============================================================================</BR>
+		 Package                               Arch                            Version                              Repository                               Size</BR>
+		===============================================================================</BR>
+		Installing:</BR>
+		 ambari-agent                          x86_64                          2.6.0.0-267                          ambari-2.6.0.0                           90 M</BR>
+
+		Transaction Summary</BR>
+		===============================================================================</BR>
+		Install  1 Package</BR>
+
+		Total download size: 90 M</BR>
+		Installed size: 125 M</BR>
+		Is this ok [y/d/N]: y</BR>
+		Downloading packages:</BR>
+		ambari-agent-2.6.0.0-267.x86_64.rpm                                                                                                |  90 MB  00:05:11</BR>
+		Running transaction check</BR>
+		Running transaction test</BR>
+		Transaction test succeeded</BR>
+		Running transaction</BR>
+		  Installing : ambari-agent-2.6.0.0-267.x86_64                                                                                                        1/1</BR>
+		  Verifying  : ambari-agent-2.6.0.0-267.x86_64                                                                                                        1/1</BR>
+
+		Installed:</BR>
+		  ambari-agent.x86_64 0:2.6.0.0-267</BR>
+
+		Complete!</BR></i>
+		[root@namenode ~]#
+
+	</p>
+	<p> <h1>Install and start postgreSQL  </h1>If you had selected postgresql to be installed as the additional component while installing CentOS 7 , you need to initialise the database.</BR>	
+		[root@namenode ~]# postgresql-setup initdb</BR>
+		<i>Initializing database ... OK</i></BR>
+		If not, then download<a href="https://www.postgresql.org/download/linux/redhat/" target="_blank"> postgresql</a> in the same way as we did for ambari.</BR>
+		Once it is installed, start the service.</BR>
+		[root@namenode ~]# systemctl start postgresql.service</BR>
+		[root@namenode ~]# systemctl status postgresql.service</BR>
+		<i>● postgresql.service - PostgreSQL database server</BR>
+		   Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; vendor preset: disabled)</BR>
+		   Active: active (running) since Mon 2017-12-18 15:07:16 EST; 5s ago</BR>
+		  Process: 4757 ExecStart=/usr/bin/pg_ctl start -D ${PGDATA} -s -o -p ${PGPORT} -w -t 300 (code=exited, status=0/SUCCESS)</BR>
+		  Process: 4752 ExecStartPre=/usr/bin/postgresql-check-db-dir ${PGDATA} (code=exited, status=0/SUCCESS)</BR>
+		 Main PID: 4761 (postgres)</BR>
+		   CGroup: /system.slice/postgresql.service</BR>
+				   ├─4761 /usr/bin/postgres -D /var/lib/pgsql/data -p 5432</BR>
+				   ├─4762 postgres: logger process</BR>
+				   ├─4764 postgres: checkpointer process</BR>
+				   ├─4765 postgres: writer process</BR>
+				   ├─4766 postgres: wal writer process</BR>
+				   ├─4767 postgres: autovacuum launcher process</BR>
+				   └─4768 postgres: stats collector process</BR>
+		</BR>
+		Dec 18 15:07:14 namenode systemd[1]: Starting PostgreSQL database server...</BR>
+		Dec 18 15:07:16 namenode systemd[1]: Started PostgreSQL database server.</i></BR>
+		</BR>
+	</p>
+	<p><h1>Run ambari setup </h1>Now, run the ambari-server setup using the default options.</BR>
+		[root@namenode ~]# ambari-server setup</BR>
+		<i>Using python  /usr/bin/python</BR>
+		Setup ambari-server</BR>
+		Checking SELinux...</BR>
+		SELinux status is 'disabled'</BR>
+		Customize user account for ambari-server daemon [y/n] (n)?</BR>
+		Adjusting ambari-server permissions and ownership...</BR>
+		Checking firewall status...</BR>
+		WARNING: iptables is running. Confirm the necessary Ambari ports are accessible. Refer to the Ambari documentation for more details on ports.</BR>
+		OK to continue [y/n] (y)?</BR>
+		Checking JDK...</BR>
+		[1] Oracle JDK 1.8 + Java Cryptography Extension (JCE) Policy Files 8</BR>
+		[2] Oracle JDK 1.7 + Java Cryptography Extension (JCE) Policy Files 7</BR>
+		[3] Custom JDK</BR>
+		==============================================================================</BR>
+		Enter choice (1): 1</BR>
+		To download the Oracle JDK and the Java Cryptography Extension (JCE) Policy Files you must accept the license terms found at http://www.oracle.com/technetwork/java/javase/terms/license/index.html and not accepting will cancel the Ambari Server setup and you must install the JDK and JCE files manually.</BR>
+		Do you accept the Oracle Binary Code License Agreement [y/n] (y)?</BR>
+		Downloading JDK from http://public-repo-1.hortonworks.com/ARTIFACTS/jdk-8u112-linux-x64.tar.gz to /var/lib/ambari-server/resources/jdk-8u112-linux-x64.tar.gz</BR>
+		jdk-8u112-linux-x64.tar.gz... 100% (174.7 MB of 174.7 MB)</BR>
+		Successfully downloaded JDK distribution to /var/lib/ambari-server/resources/jdk-8u112-linux-x64.tar.gz</BR>
+		Installing JDK to /usr/jdk64/</BR>
+		Successfully installed JDK to /usr/jdk64/</BR>
+		Downloading JCE Policy archive from http://public-repo-1.hortonworks.com/ARTIFACTS/jce_policy-8.zip to /var/lib/ambari-server/resources/jce_policy-8.zip</BR>
+		</BR>
+		Successfully downloaded JCE Policy archive to /var/lib/ambari-server/resources/jce_policy-8.zip</BR>
+		Installing JCE policy...</BR>
+		Completing setup...</BR>
+		Configuring database...</BR>
+		Enter advanced database configuration [y/n] (n)? y</BR>
+		Configuring database...</BR>
+		==============================================================================</BR>
+		Choose one of the following options:</BR>
+		[1] - PostgreSQL (Embedded)</BR>
+		[2] - Oracle</BR>
+		[3] - MySQL / MariaDB</BR>
+		[4] - PostgreSQL</BR>
+		[5] - Microsoft SQL Server (Tech Preview)</BR>
+		[6] - SQL Anywhere</BR>
+		[7] - BDB</BR>
+		==============================================================================</BR>
+		Enter choice (1): 1</BR>
+		Database admin user (postgres):</BR>
+		Database name (ambari):</BR>
+		Postgres schema (ambari):</BR>
+		Username (ambari):</BR>
+		Enter Database Password (bigdata):</BR>
+		Default properties detected. Using built-in database.</BR>
+		Configuring ambari database...</BR>
+		Checking PostgreSQL...</BR>
+		Configuring local database...</BR>
+		Configuring PostgreSQL...</BR>
+		Restarting PostgreSQL</BR>
+		Creating schema and user...</BR>
+		done.</BR>
+		Creating tables...</BR>
+		done.</BR>
+		Extracting system views...</BR>
+		ambari-admin-2.6.0.0.267.jar</BR>
+		...........</BR>
+		Adjusting ambari-server permissions and ownership...</BR>
+		Ambari Server 'setup' completed successfully.</i></BR>
+		[root@namenode ~]# ambari-server start</BR>
+		<i>Using python  /usr/bin/python</BR>
+		Starting ambari-server</BR>
+		Ambari Server running with administrator privileges.</BR>
+		Organizing resource files at /var/lib/ambari-server/resources...</BR>
+		Ambari database consistency check started...</BR>
+		Server PID at: /var/run/ambari-server/ambari-server.pid</BR>
+		Server out at: /var/log/ambari-server/ambari-server.out</BR>
+		Server log at: /var/log/ambari-server/ambari-server.log</BR>
+		Waiting for server start..........................................</BR>
+		Server started listening on 8080</BR>
+		</BR>
+		DB configs consistency check: no errors and warnings were found.</BR>
+		Ambari Server 'start' completed successfully.</i></BR>
+		[root@namenode ~]# ambari-agent start</BR>
+		<i>Verifying Python version compatibility...</BR>
+		Using python  /usr/bin/python</BR>
+		Checking for previously running Ambari Agent...</BR>
+		Checking ambari-common dir...</BR>
+		Starting ambari-agent</BR>
+		Verifying ambari-agent process status...</BR>
+		Ambari Agent successfully started</BR>
+		Agent PID at: /run/ambari-agent/ambari-agent.pid</BR>
+		Agent out at: /var/log/ambari-agent/ambari-agent.out</BR>
+		Agent log at: /var/log/ambari-agent/ambari-agent.log</i></BR>
+
+	</p>
+		<p> <h1>Windows host file </h1>To open ambari in browser, we need to add the server ip to the hosts file of windows system.</BR>
+		To achieve this, open notepad as an administrator and then open the host file (path %SystemRoot%\System32\drivers\etc\hosts).</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/notepad.jpg" ></BR>
+		Add the following entry to the file:</BR>
+	<i><b>192.168.141.71  namenode </b></i>
+	<p> <h1>Loin into Ambari </h1>
+		open http://192.168.141.71:8080 in a browser and login into Ambari.</BR>
+		Use admin/admin as the username and password</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/ambari.jpg" >
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4 bgded overlay" >
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_quarter">
+      <nav>
+        <ul class="nospace">
+          <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="one_quarter">
+      <ul class="faico clear">
+        <li><a class="faicon-linkedin" href="https://in.linkedin.com/in/dewendra-singh-a2829931"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
