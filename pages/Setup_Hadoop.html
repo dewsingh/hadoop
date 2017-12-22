@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template Name: Carinary
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html lang="">
 <head>
 <title>Creating VM's</title>
@@ -14,12 +7,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row1">
   <header id="header" class="hoc clear"> 
-    <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
       <h1><a href="index.html">Hadoop Administrator</a></h1>
     </div>
@@ -27,9 +16,7 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul class="nospace inline">
         <li><strong>Dewendra Singh</strong><br>
           +91-9742792731</li>
-<!--        <li><strong>Condimentum:</strong><br> 
-          +00 (123) 456 7890</li> -->
-      </ul>
+     </ul>
     </div>
     <!-- ################################################################################################ -->
   </header>
@@ -82,26 +69,6 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </nav>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- <div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
-  <section id="breadcrumb" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <!--<h6 class="heading">Full Width</h6>
-    <!-- ################################################################################################ -->
-    <!--<ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lorem</a></li>
-      <li><a href="#">Ipsum</a></li>
-      <li><a href="#">Dolor</a></li>
-    </ul>
-    <!-- ################################################################################################ -->
-  <!--</section>
-</div> -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
@@ -112,29 +79,29 @@ Licence URI: http://www.os-templates.com/template-terms
       <!--<img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
       <p>In this tutorial, I will explain the setup of a HDP cluster from scratch on <a href="https://www.centos.org/download/" target="_blank">CentOS 7.0</a> using <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox.</a></p>
 	  <p>In this Article, we will create a hadoop cluster with a single namenode and datanode. The learnings can be extended for <I>'n'</I> number of nodes. For this tutorial, we will assume that VirtualBox is already installed on the Windows 10 system and we have CentOS 7.0 image downloaded and available.</p>
-  	  <p><b><u>Step 1:</u></b> Start the VirtualBox program and click on the new button just below the File menu.</BR>
-	  <img class="img borderedbox inspace-5" src="../images/demo/setup/New_VM.jpg" ></p>
+  	  <b><u>Step 1:</u></b> Start the VirtualBox program and click on the new button just below the File menu.</BR>
+	  <img class="img borderedbox inspace-5" src="../images/demo/setup/New_VM.JPG" ></p>
 	  <p><b><u>Step 2:</u></b> Type the name for your virtual machine. Select Linux and Red Hat for Type and Version respectively and click Next.</p>
-	  <img class="img borderedbox inspace-5" src="../images/demo/setup/Name_os_and_VM.jpg" >
+	  <img class="img borderedbox inspace-5" src="../images/demo/setup/Name_os_and_VM.JPG" >
       <p><b><u>Step 3:</u></b> Select the amount of RAM you want to dedicate to this VM. For the namenode, dedicate atleast 4GB (more if you have sufficient RAM in your machine) and 2GB for the datanode.</p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/Memory_VM.jpg" >	  
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/Memory_VM.JPG" >	  
       <p><b><u>Step 4:</u></b> Next, you have to add a virtual hard disk with <b><I>Create a virtual hard disk now</I></b> option.</p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/VirtualHDD.jpg" >	
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/VirtualHDD.JPG" >	
       <p><b><u>Step 5:</u></b> Select <b><I>VDI(VirtualBox Disk Image)</I></b> option for the hard disk file type if you will open this VM using only VirtualBox.</p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/CreateVHD.jpg" >	
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/CreateVHD.JPG" >	
       <p><b><u>Step 6:</u></b> Select the <b><I>Dynamically allocated</I></b> option for the storage type on Physical disk. This option means that the physical space allocated will be assigned to the VM as and when needed. Then select the physical space for the nodes. </p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/Storage.jpg" ><img class="img borderedbox inspace-5" src="../images/demo/setup/VirtualDisk.jpg" >	
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/Storage.JPG" ><img class="img borderedbox inspace-5" src="../images/demo/setup/virtualDisk.JPG" >	
       <p><b><u>Step 7:</u></b> After the above step , we should have a powered off VM on the virtual box window.</p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/NewVM.jpg" >
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/NewVM.JPG" >
 	  <p><b><u>Step 8:</u></b> Before we fire up the VM, we need to add a Host-only network adapter for the VM. Select the VM and then click on the settings and navigate to the network tab and Adapter 2. </p>
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/Network.jpg" >
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/Network.JPG" >
 	  <p>If you do not have a virtual host adapter, the same can be added from <b>File > Preferences > Network > Host-only Networks </b> and then clicking on the add new host-only network. This will create a host network on the windows system which will be used for deciding the host ip for the VM. </p>
 	  <p>Run cmd to open the windows command prompt and then execute the ipconfig command to get the host network for our VM's.</p>
-	  <img class="img borderedbox inspace-5" src="../images/demo/setup/hostnet.jpg" >
+	  <img class="img borderedbox inspace-5" src="../images/demo/setup/hostnet.JPG" >
 	  <p> Next, in the settings, select the downloaded iso in the storage menu as shown below.</p>
-	  <img class="img borderedbox inspace-5" src="../images/demo/setup/select_iso.jpg" >
+	  <img class="img borderedbox inspace-5" src="../images/demo/setup/select_iso.JPG" >
 	  <p> VirtualBox will start the installation using the iso and you will be prompted to select an install mode. You can select Install CentOS 7. The default is to Test this media & install CentOS 7.</p> 
-      <img class="img borderedbox inspace-5" src="../images/demo/setup/CentOS_boot.jpg" >
+      <img class="img borderedbox inspace-5" src="../images/demo/setup/CentOS_boot.JPG" >
 	  <p>Select the option <b><I>Install CentOS Linux 7</b></I> and hit enter. It will take time to load the packages, and you will see the opening screen of the server. It requires the basic information to set up the server, for example:</p>
 	  <p><ul>
 		<li>Time zone</li>
@@ -147,7 +114,7 @@ Licence URI: http://www.os-templates.com/template-terms
 	  <p>From the first opening screen, select the language that you would like to use during the installation process; for example, English (United States). Select the desired software selection option; for example, if you want to create an infrastructure server to run the complete network operation, select this option to get all the required packages installed.
 	  Similarly, it goes to the other option as well. Select the server with GUI to get the server installed with the graphical interface option. Click done, it will check the software dependencies, and you will see the confirmation in a couple of seconds.
 		Click on the installation destination, and select the newly created disk space. In the network and hostname setting, enable the network. Begin the installation.</p>
-	  <img class="img borderedbox inspace-5" src="../images/demo/setup/install_screen.png" >	
+	  <img class="img borderedbox inspace-5" src="../images/demo/setup/Install_screen.png" >	
       <p>In the next screen, you will be asked to set up the root password. Select a strong root password and create your user.</p>
 	  <p>Next step is to get the environment ready for <a href="hadoop_installation.html">hadoop installation using ambari</a></p>
       </div>
