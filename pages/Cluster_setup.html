@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--
+Template Name: Carinary
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="">
+<head>
+<title>Installing Ambari</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../index.html">Hadoop Administrator</a></h1>
+    </div>
+    <div id="quickinfo" class="fl_right">
+      <ul class="nospace inline">
+        <li><strong>Dewendra Singh:</strong><br>
+          +91-9742792731</li>
+<!--        <li><strong>Condimentum:</strong><br> 
+          +00 (123) 456 7890</li> -->
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2">
+  <nav id="mainav" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li class="active"><a href="../index.html">Home</a></li>
+      <li><a class="drop" href="#">YARN</a>
+        <ul>
+          <!--<li><a href="pages/gallery.html">Gallery</a></li>
+          <li><a href="pages/full-width.html">Full Width</a></li>
+          <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+          <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+          <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
+		  <li><a href="yarn-site.html"> yarn-site </a></li>
+        </ul>
+      </li>
+      <!--<li><a class="drop" href="#">Dropdown</a>
+        <ul>
+          <li><a href="#">Level 2</a></li>
+          <li><a class="drop" href="#">Level 2 + Drop</a>
+            <ul>
+              <li><a href="#">Level 3</a></li>
+              <li><a href="#">Level 3</a></li>
+              <li><a href="#">Level 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Level 2</a></li>
+        </ul>
+      </li>-->
+      <li><a class="drop" href="#">Getting Started</a>
+        <ul>
+          <li><a href="Setup_Hadoop.html">Creating VM's</a></li>
+          <!--<li><a href="pages/full-width.html">Full Width</a></li>
+          <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+          <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+          <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
+		  <li><a href="hadoop_installation.html"> Installing Ambari </a></li>
+		  <li><a href="Cluster_setup.html"> Cluster Setup </a></li>
+        </ul>
+      </li>
+      <!--<li><a href="#">Link Text</a></li>
+      <li><a href="#">Link Text</a></li>
+      <li><a href="#">Long Link Text</a></li>-->
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- <div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <section id="breadcrumb" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <!--<h6 class="heading">Full Width</h6>
+    <!-- ################################################################################################ -->
+    <!--<ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Lorem</a></li>
+      <li><a href="#">Ipsum</a></li>
+      <li><a href="#">Dolor</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  <!--</section>
+</div> -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+     <h1><b>Cluster setup using Ambari.</b></h1>
+      <!--<img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt=""> -->
+    <p>In this article, I will install HDP and setup the cluster using Ambari.</BR>
+	     </p>
+	<p><h1>Ambari </h1>
+		After we login into Ambari, we will see the following welcome page for Ambari.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/Ambari_home.png" ></BR>
+		Some of the things which we can do as soon as we login into Ambari includes user and group creation, setting up new views and to launch the Create cluster wizard.We will use the wizard to configure our cluster.</BR>
+		<p>	The first step is to give a name to our cluster.</BR>
+			<img class="img borderedbox inspace-5" src="../images/demo/setup/Cluster_name.png" ></BR></p>
+		<p> Select the version of HDP Stack you want to install.We will use the public repository for installing the stack.</BR>
+			If you have a local repo then use the local reository option and then provide the base URL for the Operating System you are using on your VM.</BR>
+			<img class="img borderedbox inspace-5" src="../images/demo/setup/Stack_version.png" ></BR></p>
+		<p> For the next step we need to get the private key generated while creating the passwordless login.</BR>
+			[root@namenode ~]# cat .ssh/id_dsa</BR>
+			<i>-----BEGIN DSA PRIVATE KEY-----</BR>
+			MIIBvAIBAAKBgQC8X35ciJHR/WvAd0wTinBQEsnUYM9JH0GeGUDD+VIRrRLAmyIV</BR>
+			sBW2+gweQbvv3pC64GX01IDL/0CjmtDY5VHKAqdkilWgyx3DTAExc1CLUBW2QG0A</BR>
+			acJJcyqBD6Cb7wsxd9d/bU38RY7uo3GG54HcBd9PuSX6wTSu/Ta7gXpo1QIVAOIk</BR>
+			EYxZvfCNf5jyHs+XuD1pV593AoGBAIJKbvNxpYHq9sIBvX+7Zx7H+OMGoANtduMd</BR>
+			1Znk7y3FppZpDqbTqa/QAiw6DzerVgIi1pQQToJOLUoyZjmSfXsiqqlLyu47Kh4u</BR>
+			sjC+xBqBQORtkGbbYjD9hALZYKrvttiXa06+g44cUl5iCC85Ww2W+B6Lj8HlXX2E</BR>
+			kX05yBmjAoGAR0LbLqJywQCeNY2djcfLaWgzxT1XKgVKnTJ2JIn2wA4UvFStxlRK</BR>
+			9xmW+r3ncHz5hFEpfI8ju2vdrIf1oPq0yjTW57vTkGyrTPQD1EbUqi95L3Vjk0b0</BR>
+			CGtOup5j5U2nEQFQn0dyAgMZG8q0UBdsB2ysxTyIRUCcxaNK+AnyOWkCFQDUQIiN</BR>
+			Y8d86QRfFC7jL+Ed7wElvw==</BR>
+			-----END DSA PRIVATE KEY-----</i></BR>
+			<p>Use this Key in the next step of the install wizard. Be sure to paste the whole key without any extra spaces.</BR>
+			Provide the hostname of the VM node in the Target hosts field.</BR>
+			<img class="img borderedbox inspace-5" src="../images/demo/setup/Install_options.png" ></BR>
+			</p>
+		<p>Once ambari is able to login into the host, we will get the success message in the next step.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/Confirm_hosts.png" ></BR>
+		</p>
+		<p>Choose the services you want to install in the next step.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/Choose_services.png" ></BR>
+		</p>
+		<p> Before you install the components, we need to configure postgres for them.</BR>
+		First of all, the jdbc driver for postgres needs to be installed using ambari setup.</BR>
+		Download the jdbc driver from <a href="https://jdbc.postgresql.org/download/" target="_blank">here</a> and run the ambari setup with it to make the driver available to ambari.</BR>
+		[root@namenode ~]# ambari-server setup --jdbc-db=postgres --jdbc-driver=postgresql-42.1.4.jar</BR>
+		<i>Using python  /usr/bin/python</BR>
+		Setup ambari-server</BR>
+		Copying postgresql-42.1.4.jar to /var/lib/ambari-server/resources</BR>
+		If you are updating existing jdbc driver jar for postgres with postgresql-42.1.4.jar. Please remove the old driver jar, from all hosts. Restarting services that need the driver, will automatically copy the new jar to the hosts.</BR>
+		JDBC driver was successfully initialized.</BR>
+		Ambari Server 'setup' completed successfully.</BR></i>
+		Then, if we need to install hive, perform the following steps before continuing further using the wizard.</BR>
+		[root@namenode ~]# sudo -u postgres psql</BR>
+		<i>psql (9.2.23)</BR>
+		Type "help" for help.</i></BR>
+
+		postgres=# CREATE DATABASE hive;</BR>
+		<i>CREATE DATABASE</i></BR>
+		postgres=# CREATE USER hive WITH PASSWORD 'bigdata';</BR>
+		<i>CREATE ROLE</i></BR>
+		postgres=# GRANT ALL PRIVILEGES ON DATABASE hive TO hive;</BR>
+		<i>GRANT</i></BR>
+		postgres=#\q</BR>
+		If we try to login into postgres using the created user, we will get the following error. This is because client authentication is controlled by a configuration file in postgres, which traditionally is named pg_hba.conf and is stored in the database cluster's data directory.(HBA stands for host-based authentication.)</BR>
+		[root@namenode ~]# psql -U hive</BR>
+		<i>psql: FATAL:  no pg_hba.conf entry for host "[local]", user "hive", database "hive", SSL off</i></BR>
+		[root@namenode ~]# find / -name pg_hba.conf</BR>
+		<i>/var/lib/pgsql/data/pg_hba.conf</i></BR>
+		Now append the following lines to the pg_hba.conf file and restart postgres.</BR>
+		<b>local  all  hive,mapred md5</BR>
+		host  all   hive,mapred 0.0.0.0/0  md5</BR>
+		host  all   hive,mapred ::/0 md5</b></BR>
+		We need to perform the above steps for all the components which will use postgres.</BR>
+		[root@namenode ~]# systemctl restart postgresql.service</BR>
+
+		<p>Customize the services you are installing in the next step by giving passwords for the databases.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/Customise_services.png" >
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/hive_connection.png" ></BR>
+		</p>	
+		<p>Review all the configurations in the next step and click deploy.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/review.png" ></BR>
+		This will begin the installation of the cluster.
+		</p>
+		<p>Once the installation of all the components is completed and all the services started , we will be redirected to the Ambari dashboard.</BR>
+		If you encounter any warnings at this stage. you can ignore the waarnings and go ahead to the dashboard. Just make sure that all the components were atleast installed successfully.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/cluster_setup.png" ></BR>
+		</p>
+		<p> Open the dashboard of Ambari to check the status of all the components.</BR>
+		<img class="img borderedbox inspace-5" src="../images/demo/setup/dashboard.png" ></BR>
+		</p>
+		Now our cluster is up and running.</BR>
+		
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4 bgded overlay" >
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_quarter">
+      <nav>
+        <ul class="nospace">
+          <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="one_quarter">
+      <ul class="faico clear">
+        <li><a class="faicon-linkedin" href="https://in.linkedin.com/in/dewendra-singh-a2829931"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
