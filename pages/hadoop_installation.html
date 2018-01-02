@@ -73,6 +73,7 @@ Licence URI: http://www.os-templates.com/template-terms
           <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
           <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
 		  <li><a href="hadoop_installation.html"> Installing Ambari </a></li>
+		  <li><a href="Cluster_setup.html"> Cluster Setup </a></li>
         </ul>
       </li>
       <!--<li><a href="#">Link Text</a></li>
@@ -391,6 +392,39 @@ Licence URI: http://www.os-templates.com/template-terms
 		[root@namenode ~]#
 
 	</p>
+	<p> <h1>Database Configuration </h1>For using Ambari and other hadoop ecosystem components, we need a database for storing their data. Default database for Ambari is postgreSQL, but mySQL is also widely used.</BR>
+	Here, I will show how to install and use the postgreSQL as well as mySQL.</BR>
+	<p> <h1>Install and start mySQL  </h1>
+		Use the following commands to download the mysql repo and install the mysql-server.</BR>
+		<i><b>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm </BR>
+		sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</BR>
+		 sudo yum install mysql-server</BR>
+		 yum install mysql-connector-java</BR>
+		 sudo systemctl start mysqld</BR></b></i>
+	Next, verify that mysql is running</BR>
+	[root@namenode ~]# systemctl status mysqld</BR>
+		<i>● mysqld.service - MySQL Community Server</BR>
+		   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</BR>
+		   Active: active (running) since Mon 2017-12-25 17:49:45 IST; 1min 49s ago</BR>
+		  Process: 12103 ExecStartPost=/usr/bin/mysql-systemd-start post (code=exited, status=0/SUCCESS)</BR>
+		  Process: 12043 ExecStartPre=/usr/bin/mysql-systemd-start pre (code=exited, status=0/SUCCESS)</BR>
+		 Main PID: 12102 (mysqld_safe)</BR>
+		   CGroup: /system.slice/mysqld.service</BR>
+				   ├─12102 /bin/sh /usr/bin/mysqld_safe --basedir=/usr</BR>
+				   └─12268 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mysqld.log --pid-...</BR>
+		</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: Support MySQL by buying support/licenses at http://shop.mysql.com</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: Note: new default config file not created.</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: Please make sure your config file is current</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: WARNING: Default config file /etc/my.cnf exists on the system</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: This file will be read by default by the MySQL server</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: If you do not want to use this, either remove it, or use the</BR>
+		Dec 25 17:49:44 namenode mysql-systemd-start[12043]: --defaults-file argument to mysqld_safe when starting the server</BR>
+		Dec 25 17:49:44 namenode mysqld_safe[12102]: 171225 17:49:44 mysqld_safe Logging to '/var/log/mysqld.log'.</BR>
+		Dec 25 17:49:44 namenode mysqld_safe[12102]: 171225 17:49:44 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</BR>
+		Dec 25 17:49:45 namenode systemd[1]: Started MySQL Community Server.</i></BR>
+
+	</p>
 	<p> <h1>Install and start postgreSQL  </h1>If you had selected postgresql to be installed as the additional component while installing CentOS 7 , you need to initialise the database.</BR>	
 		[root@namenode ~]# postgresql-setup initdb</BR>
 		<i>Initializing database ... OK</i></BR>
@@ -417,7 +451,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		Dec 18 15:07:16 namenode systemd[1]: Started PostgreSQL database server.</i></BR>
 		</BR>
 	</p>
-	<p><h1>Run ambari setup </h1>Now, run the ambari-server setup using the default options.</BR>
+	<p><h1>Run ambari setup </h1>Now, run the ambari-server setup using the default options. If you want to use mySQL, then use the corresponding options.</BR>
 		[root@namenode ~]# ambari-server setup</BR>
 		<i>Using python  /usr/bin/python</BR>
 		Setup ambari-server</BR>
@@ -480,6 +514,17 @@ Licence URI: http://www.os-templates.com/template-terms
 		...........</BR>
 		Adjusting ambari-server permissions and ownership...</BR>
 		Ambari Server 'setup' completed successfully.</i></BR>
+		Install the jdbc driver for postgreSQL and run ambari-setup.</BR>
+		[root@namenode ~]# yum install postgresql-jdbc</BR>
+		[root@namenode ~]# ambari-server setup --jdbc-db=postgres --jdbc-driver=/usr/share/java/postgresql-jdbc.jar</BR>
+		<i>Using python  /usr/bin/python</BR>
+		Setup ambari-server</BR>
+		Copying /usr/share/java/postgresql-jdbc.jar to /var/lib/ambari-server/resources</BR>
+		If you are updating existing jdbc driver jar for postgres with postgresql-jdbc.jar. Please remove the old driver jar, from all hosts. Restarting services that need the driver, will automatically copy the new jar to the hosts.</BR>
+		JDBC driver was successfully initialized.</BR>
+		Ambari Server 'setup' completed successfully.</i></BR>
+
+		
 		[root@namenode ~]# ambari-server start</BR>
 		<i>Using python  /usr/bin/python</BR>
 		Starting ambari-server</BR>
@@ -516,6 +561,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		open http://192.168.141.71:8080 in a browser and login into Ambari.</BR>
 		Use admin/admin as the username and password</BR>
 		<img class="img borderedbox inspace-5" src="../images/demo/setup/ambari.jpg" >
+	<p>Now , we are ready to setup our <a href="Cluster_setup.html">hadoop cluster using Ambari.</a></p>
       </div>
       <!-- ################################################################################################ -->
     </div>
