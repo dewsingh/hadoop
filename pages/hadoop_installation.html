@@ -119,7 +119,7 @@ Licence URI: http://www.os-templates.com/template-terms
 	  [root@localhost ~]# ls -lrth /etc/sysconfig/network-scripts/ifcfg-enp0s* </BR>
 		<i>-rw-r--r--. 1 root root 373 Dec 17 09:01 /etc/sysconfig/network-scripts/ifcfg-enp0s8</BR>
 		-rw-r--r--. 1 root root 329 Dec 17 09:02 /etc/sysconfig/network-scripts/ifcfg-enp0s3</BR></i>
-	<p> Change both of the files as shown below. The changed parameters are shown in <font color="green"><b>green</b></font></BR>
+	<p> Change both of the files as shown below. All the IPv6 related parameters needs to be disabled as Hadoop does not fare well in case of IPv6. The changed parameters are shown in <font color="green"><b>green</b></font></BR>
 		[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-enp0s3 </BR>
 		<i>TYPE=Ethernet</BR>
 		BOOTPROTO=dhcp</BR>
@@ -182,7 +182,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		</BR>
 		[root@localhost ~]# systemctl restart network</BR>
 	</p>
-	<p>  Install ntp service and start it.</BR>
+	<p>  Install ntp service and start it. Installing ntp ensures athat there is a sync between the nodes of the cluster and the ambari web interface.</BR>
 		[root@localhost ~]# yum install ntp</BR>
 		<i>Loaded plugins: fastestmirror, langpacks</BR>
 		Loading mirror speeds from cached hostfile</BR>
@@ -224,7 +224,7 @@ Licence URI: http://www.os-templates.com/template-terms
 	Open <i>/etc/yum/pluginconf.d/refresh-packagekit.conf</i> with a text editor and make the following change to disable installation host of CentOS.</BR>
 		<i>enabled=0</i>
 	</p>
-	<p>	Edit the <i>/etc/selinux/config</i>and change SELINUX=enforcing to SELINUX=disabled.</BR>
+	<p>	Edit the <i>/etc/selinux/config</i>and change SELINUX=enforcing to SELINUX=disabled. This ensures that SELinux does not turn itself on after you reboot the machine.</BR>
 		[root@namenode ~]# cat /etc/selinux/config</BR>
 		<i># This file controls the state of SELinux on the system.</BR>
 		# SELINUX= can take one of these three values:</BR>
@@ -238,10 +238,12 @@ Licence URI: http://www.os-templates.com/template-terms
 		#     mls - Multi Level Security protection.</BR>
 		SELINUXTYPE=targeted</BR></i>
 	</p>
-	<p>We need to verify that the umask value is set to 0022 as Ambari and HDP support umask values of 0022.</BR>
+	<p>We need to verify that the umask value is set to 0022 as Ambari and HDP support umask values of 0022. UMASK (User Mask or User file creation MASK) sets the default permissions or base permissions granted when a new file or folder is created on a Linux machine.
+	A umask value of 022 grants read, write, execute permissions of 755 for new files or folders.</BR>
 		[root@namenode ~]# umask</BR>
 		<i>0022</BR></i>
-		If the umask is not set to this value then the same can be changed in <i>/etc/profile</i>.</BR>
+		If the umask is not set to this value then the same can be changed in <i>/etc/profile</i> or use the below command.</BR>
+		<b>umask 0022</b> </BR>
  	</p>
 	<p><h1>Enable passwordless login </h1>The next thing we need to do is to enable passwordless login for the root user on the localhost.</BR>
 		[root@namenode ~]# ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa</BR>
